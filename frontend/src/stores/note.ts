@@ -905,7 +905,7 @@ if (this.trashMode) this.exitTrashMode();
         /**
          * 全文搜索笔记（FTS5 + trigram）
          * 搜索当前顶层笔记本下所有子分类的笔记，结果替换第二栏列表
-         * @param keyword 搜索关键词（最少 3 字符）
+         * @param keyword 搜索关键词（最少 2 字符）
          */
         async searchNotes(keyword: string) {
             if (this.activeNotebookId === null) return;

@@ -9,8 +9,8 @@
  * 空态：友好提示
  *
  * 搜索逻辑：
- *   - 关键词 >= 3 字符：防抖 300ms 后调后端 FTS5 搜索
- *   - 关键词 < 3 字符 / 清空 / ESC：退出搜索态，恢复分类列表
+ *   - 关键词 >= 2 字符：防抖 300ms 后调后端搜索
+ *   - 关键词 < 2 字符 / 清空 / ESC：退出搜索态，恢复分类列表
  *
  * 右键笔记项可弹出 NoteContextMenu 菜单，调用 store action
  * 完成移入回收站 / 置顶笔记（智能切换），列表自动刷新。
@@ -91,8 +91,8 @@ let searchTimer: ReturnType<typeof setTimeout> | null = null;
 
 /**
  * 关键词变化时触发搜索（防抖 300ms）
- * - 关键词 >= 3 字符：调后端 FTS5 搜索
- * - 关键词 < 3 字符：退出搜索态，恢复分类列表
+ * - 关键词 >= 2 字符：调后端搜索
+ * - 关键词 < 2 字符：退出搜索态，恢复分类列表
  */
 watch(keyword, (val) => {
     const kw = val.trim();
@@ -101,8 +101,8 @@ watch(keyword, (val) => {
         clearTimeout(searchTimer);
         searchTimer = null;
     }
-    // 关键词不足 3 字符：退出搜索态
-    if (kw.length < 3) {
+    // 关键词不足 2 字符：退出搜索态
+    if (kw.length < 2) {
         if (noteStore.searchMode) {
             noteStore.clearSearch();
         }

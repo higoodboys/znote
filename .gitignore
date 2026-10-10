@@ -9,3 +9,5 @@ frontend/.env.local
 .env
 frontent/.env.development
 znote-mobile
+# 本机部署配置，含域名与证书路径
+nginx-*.conf
